@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Baloo 2', cursive;
+}
+
+
+.my-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.table-title{
+    background: rgba(74, 144, 226, .4);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .7);
+    border-radius: 10px;
+    font-size: 24px;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+
+.table-title button{
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    cursor: pointer;
+    width: 100px;
+    height: 40px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.user-list{
+    background: rgba(74, 144, 226, .4);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .7);
+    border-radius: 10px;
+    font-size: 24px;
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.user-list table{
+    border-collapse: collapse;
+    width: 100%;
+    color: white;
+    font-family: 'Baloo 2', cursive;
+    font-size: 18px;
+    text-align: center;
+    border: 1px solid white;
+    padding: 10px;
+}
+
+.user-list table th{
+    background-color: white;
+    color: black;
+}
+
+.user-list table td, .user-info table th{
+    border: 1px solid white;
+    padding: 10px;
+}
+
+.user-list button{
+    cursor: pointer;
+    width: 50px;
+    height: 40px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 10px;
+}
+
+button.delete-user{
+    background-color: red !important;
+}
+
+button.edit-user{
+    background-color: rgb(39, 174, 96) !important;
+}
+
+    

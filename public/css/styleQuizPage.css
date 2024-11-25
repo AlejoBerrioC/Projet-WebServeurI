@@ -47,16 +47,6 @@ button:hover {
     background-color: rgb(29, 127, 70);
 }
 
-#remove-question{
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-}
 
-#remove-question:hover {
-    background-color: rgb(165, 0, 0);
-}
-  
+
+    

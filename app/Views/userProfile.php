@@ -29,7 +29,7 @@
                 <tbody>
                     <tr>
                         <td>Quiz 1</td>
-                        <td>RPG Gamer</td>
+                        <td>80% (Expert!)</td>
                         <td>2024-11-24</td>
                         <td><button type="button">View</button></td>
                     </tr>

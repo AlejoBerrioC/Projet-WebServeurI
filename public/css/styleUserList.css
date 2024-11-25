@@ -2,9 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Baloo 2', cursive;
+    font-family: 'Baloo 2', cursive !important;
 }
 
+html body{
+    background-color: transparent !important;
+}
 
 .my-container {
     display: flex;
@@ -12,16 +15,17 @@
     height: 100vh;
     overflow: hidden;
     flex-direction: column;
+    background-color: transparent !important;
 }
 
 .table-title{
-    background: rgba(74, 144, 226, .4);
+    background: rgba(74, 144, 226, .4) !important;
     box-sizing: border-box;
-    box-shadow: 0 15px 25px rgba(0, 0, 0, .7);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .7) !important;
     border-radius: 10px;
     font-size: 24px;
-    color: white;
-    text-align: center;
+    color: white !important;
+    text-align: center !important;
     padding: 20px;
     position: relative;
 }
@@ -31,8 +35,9 @@
     right: 20px;
     bottom: 10px;
     cursor: pointer;
-    width: 100px;
-    height: 40px;
+    width: 100px !important;
+    height: 40px !important;
+    font-size: 14px !important;
     background-color: white;
     color: black;
     border: none;
@@ -57,7 +62,7 @@
     width: 100%;
     color: white;
     font-family: 'Baloo 2', cursive;
-    font-size: 18px;
+    font-size: 18px !important;
     text-align: center;
     border: 1px solid white;
     padding: 10px;
@@ -66,6 +71,7 @@
 .user-list table th{
     background-color: white;
     color: black;
+    text-align: center !important;
 }
 
 .user-list table td, .user-info table th{
@@ -75,20 +81,26 @@
 
 .user-list button{
     cursor: pointer;
-    width: 50px;
-    height: 40px;
+    width: 60px !important;
+    height: 40px !important;
     background-color: white;
     color: black;
     border: none;
     border-radius: 10px;
+    text-align: center !important;
 }
 
-button.delete-user{
+#delete-user{
     background-color: red !important;
 }
 
-button.edit-user{
+#edit-user{
     background-color: rgb(39, 174, 96) !important;
+}
+
+.modal-header{
+    background-color: rgba(74, 144, 226) !important;
+    color: white !important;
 }
 
     

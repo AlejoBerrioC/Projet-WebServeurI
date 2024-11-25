@@ -13,24 +13,43 @@
             <h1>New Admin</h1>
         </div>
         <div class="add-admin-container">
-            <form id="admin-creation-form">
-                <table>
-                    <tr>
-                        <td><label for="username">Username: </label></td>
-                        <td><input type="text" name="username" id="username"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="email">Email: </label></td>
-                        <td><input type="text" name="email" id="email"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="password">Password: </label></td>
-                        <td><input type="password" name="password" id="password"></td>
-                    </tr>
-                </table>
-                <br/>
-                <button type="submit">Create Admin</button>
-            </form>
+            <div class="new-admin">
+                <h2>New Admin Info</h2>
+                <form id="admin-creation-form">
+                    <table>
+                        <tr>
+                            <td><label for="username">Username: </label></td>
+                            <td><input type="text" name="username" id="username"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="email">Email: </label></td>
+                            <td><input type="text" name="email" id="email"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="password">Password: </label></td>
+                            <td><input type="password" name="password" id="password"></td>
+                        </tr>
+                    </table>
+                    <br/>
+                </form>
+            </div>
+            <div class="admin-info">
+                <h2>Your Admin Info</h2>
+                <form id="admin-creation-form">
+                    <table>
+                        <tr>
+                            <td><label for="username">Username: </label></td>
+                            <td><input type="text" name="username" id="username"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="password">Password: </label></td>
+                            <td><input type="password" name="password" id="password"></td>
+                        </tr>
+                    </table>
+                    <br/>
+                    <button type="submit">Create Admin</button>
+                </form>
+            </div>
         </div>
     </div>
 </body>

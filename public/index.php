@@ -1,6 +1,6 @@
 <?php
     if (isset($_POST['login'])){
-        header('Location: ../app/Views/dashboard.php');
+        header('Location: ../app/Views/dashboardAdmin.php');
         exit();
     }
 ?>

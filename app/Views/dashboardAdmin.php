@@ -14,10 +14,12 @@
 <body>
     <div class="my-container">
         <div class="navbar-ver">
-            <a href="./dashboard.php"><img src="../../public/images/LogoApp.webp" alt="" id="idLogo-navbar"></a>
+            <a href="./dashboardAdmin.php"><img src="../../public/images/LogoApp.webp" alt="" id="idLogo-navbar"></a>
             <ul>
                 <li><a href="./userProfile.php" target="contentFrame">Profile</a></li>
                 <li><a href="./quizTime.php" target="contentFrame">Quiz Time</a></li>
+                <li><a href="./userList.php" target="contentFrame">User List</a></li>
+                <li><a href="./quizList.php" target="contentFrame">Quiz List</a></li>
             </ul>
             <button type="button"><a href="../../public/index.php"><img src="../../public/images/logout.png" alt=""></a></button>
         </div>

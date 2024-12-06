@@ -19,8 +19,6 @@ class UserDAO{
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $password);
         return $stmt->execute();
-        
-        
     }
 
     public function deleteUser($id) {
@@ -38,6 +36,18 @@ class UserDAO{
 
     public function authenticateUser($username, $password) {
         $query = "SELECT * FROM " . $this->table . " WHERE username = :username";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':username', $username);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($user && password_verify($password, $user['password'])) {
+            return new User($user['id'], $user['username'], $user['email'], $user['password'], $user['role'], $user['date_inscription']);
+        }
+        return null;
+    }
+
+    public function authenticateAdmin($username, $password) {
+        $query = "SELECT * FROM " . $this->table . " WHERE username = :username AND role = 'admin'";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':username', $username);
         $stmt->execute();

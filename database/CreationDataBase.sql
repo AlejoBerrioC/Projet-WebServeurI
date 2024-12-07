@@ -23,10 +23,17 @@ CREATE TABLE Questions (
     quiz_id INT NOT NULL,
     question_text VARCHAR(255) NOT NULL,
     image_url VARCHAR(255) NOT NULL,
-    good_answer VARCHAR(150),
-    bad_answer VARCHAR(150),
 
     CONSTRAINT FK_quiz_id FOREIGN KEY (quiz_id) REFERENCES quiz(id)
+);
+
+CREATE TABLE answers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    question_id INT NOT NULL,
+    answer_text VARCHAR(255) NOT NULL,
+    is_correct BOOLEAN NOT NULL,
+
+    CONSTRAINT FK_question_answer FOREIGN KEY (question_id) REFERENCES questions(id)
 );
 
 CREATE TABLE results (

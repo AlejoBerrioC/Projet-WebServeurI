@@ -3,13 +3,15 @@ class Question{
     private $id;
     private $question_text;
     private $image_url;
-    private $good_answer;
+    private Answer $good_answer;
+    private Answer $bad_answer;
 
     public function __construct($id, $question_text, $image_url, $good_answer) {
         $this->id = $id;
         $this->question_text = $question_text;
         $this->image_url = $image_url;
         $this->good_answer = $good_answer;
+        $this->bad_answer = [];
     }
 
     public function getId() {
@@ -26,6 +28,14 @@ class Question{
 
     public function getGoodAnswer() {
         return $this->good_answer;
+    }
+
+    public function getBadAnswer() {
+        return $this->bad_answer;
+    }
+
+    public function addBadAnswer($bad_answer) {
+        $this->bad_answer[] = $bad_answer;
     }
 
     public function setId($id) {

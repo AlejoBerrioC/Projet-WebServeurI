@@ -21,7 +21,11 @@
                 <li><a href="./userList.php" target="contentFrame">User List</a></li>
                 <li><a href="./quizList.php" target="contentFrame">Quiz List</a></li>
             </ul>
-            <button type="button"><a href="../../public/index.php"><img src="../../public/images/logout.png" alt=""></a></button>
+            <form action="../Controllers/logout.php" method="post" style="display:inline;">
+                <button type="submit">
+                    <img src="../../public/images/logout.png" alt="Logout">
+                </button>
+            </form>
         </div>
         <div class="iframe">
             <iframe src="./userProfile.php" name="contentFrame" id="idContentFrame"></iframe>

@@ -26,6 +26,24 @@ class QuizDAO{
         $stmt->bindParam(':description', $description);
         return $stmt->execute();
     }
+
+    public function updateQuiz(Quiz $quiz, $id) {
+        $title = $quiz->getTitle();    
+        $description = $quiz->getDescription();
+        $query = "UPDATE " . $this->table . " SET titre = :titre, description = :description WHERE id = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':titre', $title);
+        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':id', $id);
+        return $stmt->execute();
+    }
+
+    public function deleteQuiz($id) {
+        $query = "DELETE FROM " . $this->table . " WHERE id = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $id);
+        return $stmt->execute();
+    }
     
 }
 

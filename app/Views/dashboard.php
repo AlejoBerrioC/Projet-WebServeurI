@@ -19,7 +19,11 @@
                 <li><a href="./userProfile.php" target="contentFrame">Profile</a></li>
                 <li><a href="./quizTime.php" target="contentFrame">Quiz Time</a></li>
             </ul>
-            <button type="button"><a href="../../public/index.php"><img src="../../public/images/logout.png" alt=""></a></button>
+            <form action="../Controllers/logout.php" method="post" style="display:inline;">
+                <button type="submit">
+                    <img src="../../public/images/logout.png" alt="Logout">
+                </button>
+            </form>
         </div>
         <div class="iframe">
             <iframe src="./userProfile.php" name="contentFrame" id="idContentFrame"></iframe>

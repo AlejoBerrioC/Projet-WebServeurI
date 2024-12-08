@@ -23,6 +23,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     
         if($user && password_verify($password, $user->getPassword())) {
             Auth::login($user, $_POST['remember']);
+            $_SESSION['user_id'] = $user->getId();
             $role = $user->getRole();
             PageController::dashboard($role);
         } else{

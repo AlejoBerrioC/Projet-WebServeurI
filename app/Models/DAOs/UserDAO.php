@@ -34,6 +34,14 @@ class UserDAO{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getUserById($id) {
+        $query = "SELECT * FROM " . $this->table . " WHERE id = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function authenticateUser($username, $password) {
         $query = "SELECT * FROM " . $this->table . " WHERE username = :username";
         $stmt = $this->conn->prepare($query);
@@ -47,15 +55,22 @@ class UserDAO{
     }
 
     public function authenticateAdmin($username, $password) {
-        $query = "SELECT * FROM " . $this->table . " WHERE username = :username AND role = 'admin'";
+        $query = "SELECT * FROM " . $this->table . " WHERE username = :username AND role = 'Admin'";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':username', $username);
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($user && password_verify($password, $user['password'])) {
-            return new User($user['id'], $user['username'], $user['email'], $user['password'], $user['role'], $user['date_inscription']);
+            return true;
         }
         return null;
+    }
+
+    public function changeUserToAdmin($username){
+        $query = "UPDATE " . $this->table . " SET role = 'Admin' WHERE username = :username";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':username', $username);
+        return $stmt->execute();
     }
 
     public function changePassword($id, $newPassword) {
@@ -81,6 +96,8 @@ class UserDAO{
             throw new Exception("Error changing password.");
         }
     }
+
+
 }
 
 ?>

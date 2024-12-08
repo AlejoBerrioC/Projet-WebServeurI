@@ -1,7 +1,7 @@
 <?php
 class PageController {
     public static function dashboard($role) {
-        if ($role == 'admin') {
+        if ($role == 'Admin') {
             header('Location: /Projet-WebServeurI/app/Views/dashboardAdmin.php');
             exit();
         } else {

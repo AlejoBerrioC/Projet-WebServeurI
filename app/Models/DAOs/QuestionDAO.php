@@ -12,13 +12,11 @@ class QuestionDAO{
     public function addQuestion(Question $question, $quiz_id) {
         $question_text = $question->getQuestionText();
         $image_url = $question->getImageUrl();
-        $good_answer = $question->getGoodAnswer();
-        $query = "INSERT INTO " . $this->table . " (quiz_id, question_text, image_url, good_answer) VALUES (:quiz_id, :question_text, :image_url, :good_answer)";
+        $query = "INSERT INTO " . $this->table . " (quiz_id, question_text, image_url) VALUES (:quiz_id, :question_text, :image_url)";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':quiz_id', $quiz_id);
         $stmt->bindParam(':question_text', $question_text);
         $stmt->bindParam(':image_url', $image_url);
-        $stmt->bindParam(':good_answer', $good_answer);
         return $stmt->execute();
     }
 

@@ -9,6 +9,15 @@ class AnswerDAO{
         $this->conn = $db;
     }
 
+    public function addAnswer(Answer $answer, $question_id) {
+        $query = "INSERT INTO " . $this->table . " (question_id, answer_text, is_correct) VALUES (:question_id, :answer_text, :is_correct)";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':question_id', $question_id);
+        $stmt->bindParam(':answer_text', $answer->getAnswerText());
+        $stmt->bindParam(':is_correct', $answer->getIsCorrect());
+        return $stmt->execute();
+    }
+
     public function getBadAnswersByQuestionId($question_id) {
         $query = "SELECT * FROM . " . $this->table . " WHERE question_id = :question_id AND is_correct = 0";
         $stmt = $this->conn->prepare($query);

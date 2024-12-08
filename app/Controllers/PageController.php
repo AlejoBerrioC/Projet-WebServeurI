@@ -14,6 +14,5 @@ class PageController {
         header('Location: /Projet-WebServeurI/public/index.php');
         exit();
     }
-
 }
 ?>

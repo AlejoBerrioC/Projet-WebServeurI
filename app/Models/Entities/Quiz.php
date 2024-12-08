@@ -5,8 +5,8 @@ class Quiz{
     private $description;
     private $questions;
     private $date_creation;
-
-    public function __construct($id, $title, $description, $date_creation) {
+    
+    public function __construct($id = null, $title = null, $description = null, $date_creation = null){
         $this->id = $id;
         $this->title = $title;
         $this->description = $description;

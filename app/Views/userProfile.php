@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div id="edit-password-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form id="edit-password-form" method="post" onsubmit="return updatePassword(event);">
+            <form id="edit-password-form" method="post">
                 <div class="modal-header">
                     <h5 class="modal-title">Change Password</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">

@@ -18,13 +18,14 @@ class QuizDAO{
     }
 
     public function addQuiz(Quiz $quiz) {
-        $title = $quiz->getTitle();
-        $description = $quiz->getDescription();
+        $title = $quiz->getTitle() ?? '';
+        $description = $quiz->getDescription() ?? '';
         $query = "INSERT INTO " . $this->table . " (titre, description) VALUES (:titre, :description)";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':titre', $title);
         $stmt->bindParam(':description', $description);
-        return $stmt->execute();
+        $stmt->execute();
+        return $this->conn->lastInsertId();
     }
 
     public function updateQuiz(Quiz $quiz, $id) {

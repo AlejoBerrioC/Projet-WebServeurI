@@ -26,7 +26,15 @@
     margin-bottom: 20px;
 }
 
-.question-container {
+.question-container{
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: rgba(74, 144, 226, .4);
+}
+
+.quiz-description-div {
     margin-bottom: 20px;
     padding: 10px;
     border: 1px solid #ccc;

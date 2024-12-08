@@ -1,3 +1,20 @@
+<?php
+require_once __DIR__ . '/../Models/Entities/Quiz.php';
+require_once __DIR__ . '/../Models/DAOs/QuizDAO.php';
+require_once __DIR__ . '/../../database/Database.php';
+
+session_start();
+$db = (new Database())->connect();
+$quizDao = new QuizDAO($db);
+$newQuiz = new Quiz();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $quizId = $quizDao->addQuiz($newQuiz);
+    $newQuiz->setId($quizId);
+    $_SESSION['new_quiz'] = serialize($newQuiz);
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +32,10 @@
     <div class="my-container">
         <div class="table-title">
             <h1>Manage Quizes</h1>
+            <form method="post">
             <button type="submit" onclick="creationQuiz()">Add New Quiz</button>
+            </form>
+            
         </div>
         <div class="quiz-list">
             <table id="idTable-quiz">

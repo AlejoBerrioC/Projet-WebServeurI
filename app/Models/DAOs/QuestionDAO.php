@@ -29,6 +29,7 @@ class QuestionDAO{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+  
     public function deleteQuestion($id) {
         $query = "DELETE FROM " . $this->table . " WHERE id = :id";
         $stmt = $this->conn->prepare($query);

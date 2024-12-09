@@ -9,6 +9,7 @@ $quizDao = new QuizDAO($db);
 $newQuiz = new Quiz();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['quiz-id'])) {
+    unset($_SESSION['quiz_id']);
     $quizId = $_POST['quiz-id']; 
     $_SESSION['quiz_id'] = $quizId;
     header('Location: quizPage.php');

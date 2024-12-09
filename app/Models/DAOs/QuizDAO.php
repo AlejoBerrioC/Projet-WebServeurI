@@ -26,6 +26,14 @@ class QuizDAO{
         return new Quiz($quiz['id'], $quiz['titre'], $quiz['description'], $quiz['date_creation']);
     }
 
+public function getQuizNameById($id) {
+    $query = "SELECT titre FROM " . $this->table . " WHERE id = :id";
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $quiz = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $quiz['titre'];
+}
     public function addQuiz(Quiz $quiz) {
         $title = $quiz->getTitle() ?? '';
         $description = $quiz->getDescription() ?? '';

@@ -17,6 +17,15 @@ class QuizDAO{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getQuizById($id) {
+        $query = "SELECT * FROM " . $this->table . " WHERE id = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $quiz = $stmt->fetch(PDO::FETCH_ASSOC);
+        return new Quiz($quiz['id'], $quiz['titre'], $quiz['description'], $quiz['date_creation']);
+    }
+
     public function addQuiz(Quiz $quiz) {
         $title = $quiz->getTitle() ?? '';
         $description = $quiz->getDescription() ?? '';

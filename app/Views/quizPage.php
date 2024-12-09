@@ -14,6 +14,7 @@ $questionDao = new QuestionDAO($db);
 $answerDao = new AnswerDAO($db);
 if(isset($_SESSION['quiz_id'])) {
     $quiz_id = $_SESSION['quiz_id'];
+    echo $quiz_id;
 } else {
     echo "No quiz ID found in session.";
 }

@@ -11,6 +11,7 @@ $newQuiz = new Quiz();
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['quiz-id'])) {
     $quizId = $_POST['quiz-id']; 
     $_SESSION['quiz_id'] = $quizId;
+    header('Location: quizPage.php');
 }
 
 $quizzes = $quizDao->getAllQuizzes();
@@ -49,7 +50,7 @@ $quizzes = $quizDao->getAllQuizzes();
                         <td><?php echo $quizObj->getDescription(); ?></td>
                         <td><?php echo date('Y-m-d', strtotime($quizObj->getDateCreation())); ?></td>
                         <td>
-                            <form action="quizPage.php" method="post" name="start-quiz">
+                            <form action="" method="post" name="start-quiz">
                                 <input type="hidden" name="quiz-id" id="quiz-id" value="<?php echo $quiz['id']; ?>">
                                 <button type="submit">Start</button>
                             </form>

@@ -24,7 +24,7 @@ CREATE TABLE Questions (
     question_text VARCHAR(255) NOT NULL,
     image_url VARCHAR(255) NOT NULL,
 
-    CONSTRAINT FK_quiz_id FOREIGN KEY (quiz_id) REFERENCES quiz(id)
+    CONSTRAINT FK_quiz_id FOREIGN KEY (quiz_id) REFERENCES quiz(id) ON DELETE CASCADE
 );
 
 CREATE TABLE answers (
@@ -33,7 +33,7 @@ CREATE TABLE answers (
     answer_text VARCHAR(255) NOT NULL,
     is_correct BOOLEAN NOT NULL,
 
-    CONSTRAINT FK_question_answer FOREIGN KEY (question_id) REFERENCES questions(id)
+    CONSTRAINT FK_question_answer FOREIGN KEY (question_id) REFERENCES questions(id) ON DELETE CASCADE
 );
 
 CREATE TABLE results (
@@ -43,8 +43,8 @@ CREATE TABLE results (
     score DOUBLE,
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT FK_user_result_id FOREIGN KEY (user_id) REFERENCES users(id),
-    CONSTRAINT FK_quiz_result_id FOREIGN KEY (quiz_id) REFERENCES quiz(id)
+    CONSTRAINT FK_user_result_id FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    CONSTRAINT FK_quiz_result_id FOREIGN KEY (quiz_id) REFERENCES quiz(id) ON DELETE CASCADE
 );
 
 CREATE TABLE sessions (
@@ -53,7 +53,7 @@ CREATE TABLE sessions (
     session_token VARCHAR(100) NOT NULL,
     expiration INT NOT NULL,
 
-    CONSTRAINT FK_user_session_id FOREIGN KEY (user_id) REFERENCES users(id)
+    CONSTRAINT FK_user_session_id FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE captcha (

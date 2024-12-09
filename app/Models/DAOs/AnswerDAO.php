@@ -18,6 +18,28 @@ class AnswerDAO{
         return $stmt->execute();
     }
 
+    public function addGoodAnswer(Answer $answer, $question_id) {
+        $answerTxt = $answer->getAnswerText();
+        $answerCorrect = $answer->getIsCorrect();
+        $query = "INSERT INTO " . $this->table . " (question_id, answer_text, is_correct) VALUES (:question_id, :answer_text, :is_correct)";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':question_id', $question_id);
+        $stmt->bindParam(':answer_text', $answerTxt);
+        $stmt->bindParam(':is_correct', $answerCorrect);
+        return $stmt->execute();
+    }
+
+    public function addBadAnswer(Answer $answer, $question_id) {
+        $answerTxt = $answer->getAnswerText();
+        $answerCorrect = $answer->getIsCorrect();
+        $query = "INSERT INTO " . $this->table . " (question_id, answer_text, is_correct) VALUES (:question_id, :answer_text, :is_correct)";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':question_id', $question_id);
+        $stmt->bindParam(':answer_text', $answerTxt);
+        $stmt->bindParam(':is_correct', $answerCorrect);
+        return $stmt->execute();
+    }
+
     public function getBadAnswersByQuestionId($question_id) {
         $query = "SELECT * FROM . " . $this->table . " WHERE question_id = :question_id AND is_correct = 0";
         $stmt = $this->conn->prepare($query);

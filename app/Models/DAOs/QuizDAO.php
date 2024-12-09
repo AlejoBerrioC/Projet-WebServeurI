@@ -28,6 +28,22 @@ class QuizDAO{
         return $this->conn->lastInsertId();
     }
 
+    public function addTitre($id, $title) {
+        $query = "UPDATE " . $this->table . " SET titre = :titre WHERE id = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':titre', $title);
+        $stmt->bindParam(':id', $id);
+        return $stmt->execute();
+    }
+
+    public function addDescription($id, $description) {
+        $query = "UPDATE " . $this->table . " SET description = :description WHERE id = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':id', $id);
+        return $stmt->execute();
+    }
+
     public function updateQuiz(Quiz $quiz, $id) {
         $title = $quiz->getTitle();    
         $description = $quiz->getDescription();

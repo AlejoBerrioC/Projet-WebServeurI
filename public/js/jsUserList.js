@@ -24,7 +24,6 @@ function deleteUser(){
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
             if(xhr.responseText === 'success') {
                 $('#user-row-' + userId).remove();
-                $('#delete-user-modal').modal('hide');
                 location.reload();
             } else {
                 alert('Une erreur est survenue lors de la suppression de l\'utilisateur.');

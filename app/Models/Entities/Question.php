@@ -3,8 +3,8 @@ class Question{
     private $id;
     private $question_text;
     private $image_url;
-    private Answer $good_answer;
-    private Answer $bad_answer;
+    private $good_answer;
+    private $bad_answer;
 
     public function __construct($id, $question_text, $image_url, $good_answer) {
         $this->id = $id;

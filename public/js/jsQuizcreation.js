@@ -10,22 +10,22 @@ function createQuestionElement(number){
 
     questionDiv.innerHTML = `
         <label for="question-${number}">Question ${number}:</label>
-        <input type="text" id="question-${number}" name="question-${number}" placeholder="Enter the question" required>
+        <input type="text" id="question-${number}" name="question[${number}]" placeholder="Enter the question" required>
         <br><br>
         <label for="image-url-${number}">Image URL:</label>
-        <input type="text" id="image-url-${number}" name="image-url-${number}" placeholder="Enter the image URL">
+        <input type="text" id="image-url-${number}" name="image-url[${number}]" placeholder="Enter the image URL">
         <br><br>
         <label for="answer-${number}">Answer ${number}:</label>
-        <input type="text" id="answer-${number}" name="answer-${number}" placeholder="Enter the answer" required>
+        <input type="text" id="answer-${number}" name="answer[${number}]" placeholder="Enter the answer" required>
         <br><br>
         <label for="bad-answer-${number}-1">Bad Answer ${number}:</label>
-        <input type="text" id="bad-answer-${number}" name="bad-answer-${number}" placeholder="Enter the bad answer" required>
+        <input type="text" id="bad-answer-${number}" name="bad-answer[${number}-1]" placeholder="Enter the bad answer" required>
         <br><br>
         <label for="bad-answer-${number}-2">Bad Answer ${number}:</label>
-        <input type="text" id="bad-answer-${number}" name="bad-answer-${number}" placeholder="Enter the bad answer" required>
+        <input type="text" id="bad-answer-${number}" name="bad-answer[${number}-2]" placeholder="Enter the bad answer" required>
         <br><br>
         <label for="bad-answer-${number}-3">Bad Answer ${number}:</label>
-        <input type="text" id="bad-answer-${number}" name="bad-answer-${number}" placeholder="Enter the bad answer" required>
+        <input type="text" id="bad-answer-${number}" name="bad-answer[${number}-3]" placeholder="Enter the bad answer" required>
         <br><br>
         <button type="button" id="remove-question" onclick="removeQuestion(this)">Remove Question</button>
     `;

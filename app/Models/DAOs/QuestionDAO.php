@@ -17,7 +17,8 @@ class QuestionDAO{
         $stmt->bindParam(':quiz_id', $quiz_id);
         $stmt->bindParam(':question_text', $question_text);
         $stmt->bindParam(':image_url', $image_url);
-        return $stmt->execute();
+        $stmt->execute();
+        return $this->conn->lastInsertId();
     }
 
     public function getQuestionsByQuizId($quiz_id) {

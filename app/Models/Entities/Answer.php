@@ -2,7 +2,7 @@
 class Answer {
     public $id;
     public $answer_text;
-    public bool$is_correct;
+    public $is_correct;
     
     public function __construct($id, $answer_text, $is_correct) {
         $this->id = $id;

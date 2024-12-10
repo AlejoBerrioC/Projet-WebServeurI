@@ -36,5 +36,19 @@ class QuestionDAO{
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
     }
+
+    public function getNextQuestion($quiz_id, $current_question_id) {
+        $query = "SELECT * FROM " . $this->table . " WHERE quiz_id = :quiz_id AND id > :current_question_id ORDER BY id ASC LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':quiz_id', $quiz_id);
+        $stmt->bindParam(':current_question_id', $current_question_id);
+        $stmt->execute();
+        if($stmt->rowCount() > 0) {
+            $question = $stmt->fetch(PDO::FETCH_ASSOC);
+            return new Question($question['id'], $question['question_text'], $question['image_url']);
+        } else {
+            return null;
+        }
+    }
 }
 ?>

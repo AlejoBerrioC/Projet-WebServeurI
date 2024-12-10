@@ -6,12 +6,10 @@ class Question{
     private $good_answer;
     private $bad_answer;
 
-    public function __construct($id, $question_text, $image_url, $good_answer) {
+    public function __construct($id, $question_text, $image_url) {
         $this->id = $id;
         $this->question_text = $question_text;
         $this->image_url = $image_url;
-        $this->good_answer = $good_answer;
-        $this->bad_answer = [];
     }
 
     public function getId() {

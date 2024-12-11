@@ -12,8 +12,8 @@ function createQuestionElement(number){
         <label for="question-${number}">Question ${number}:</label>
         <input type="text" id="question-${number}" name="question[${number}]" placeholder="Enter the question" required>
         <br><br>
-        <label for="image-url-${number}">Image URL:</label>
-        <input type="text" id="image-url-${number}" name="image-url[${number}]" placeholder="Enter the image URL">
+        <label for="image-url-${number}" class="form-label">Image URL:</label>
+        <input type="file" class="form-control" id="image-url-${number}" name="image-url[${number}]"  id="formFile">
         <br><br>
         <label for="answer-${number}">Answer ${number}:</label>
         <input type="text" id="answer-${number}" name="answer[${number}]" placeholder="Enter the answer" required>

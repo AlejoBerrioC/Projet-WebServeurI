@@ -24,11 +24,28 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save-quiz'])) {
     for ($i=1; $i <= count($_POST['question']) ; $i++) {
         //Recuperation des données
         $question = $_POST['question'][$i];
-        $imageURL = $_POST['image-url'][$i];
+        $imageFile = $_FILES['image-url'];
+        $imageFileName = $imageFile['name'][$i];
+        $imageFileError = $imageFile['error'][$i];
+        $imageFileTmpName = $imageFile['tmp_name'][$i];
         $answer = $_POST['answer'][$i];
         $badAnswer1 = $_POST['bad-answer'][$i . '-1'];
         $badAnswer2 = $_POST['bad-answer'][$i . '-2'];
         $badAnswer3 = $_POST['bad-answer'][$i . '-3'];
+
+        if (isset($imageFileName) && $imageFileError === 0) {
+            $uploadDir = __DIR__ . '/../../public/images/Quiz/'; 
+            $filename = basename($imageFileName);
+            $uploadPath = $uploadDir . $filename;
+    
+            if (move_uploaded_file($imageFileTmpName, $uploadPath)) {
+                $imageURL = '../../public/images/Quiz/' . $filename;
+            } else {
+                $imageURL = null;
+            }
+        } else {
+            $imageURL = null; 
+        }
 
         $question = new Question(null, $question, $imageURL, $answer);
         $questionId = $questionDao->addQuestion($question, $quiz->getId());
@@ -63,7 +80,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save-quiz'])) {
         <div class="table-title">
             <h1>New Quiz</h1>
         </div>
-        <form id="quiz-form" method="post">
+        <form id="quiz-form" method="post" enctype="multipart/form-data">
             <div id="question-container">
             </div>
             <button type="button" class="add-question" id="add-question">Add Another Question</button>

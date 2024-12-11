@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $currentQuestionId = $_POST['currentQuestionId'] ?? null;
     $answerId = $_POST['answerId'] ?? null;
     $score = $_POST['score'] ?? 0;
-    $result = 0;
+    $result = $_POST['result'] ?? null;
     $numberQuestion = $_POST['totalQuestions'] ?? null;
 
     if(!$currentQuestionId || !$answerId) {
@@ -27,7 +27,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if($answerDao->authGoodAnswer($answerId)) {
         $score += 1;
-        $result = round($score / $numberQuestion * 100, 1);
+        $result = round(($score / $numberQuestion) * 100, 1);
     }
 
     $nextQuestion = $questionDao->getNextQuestion($_SESSION['quiz_id'], $currentQuestionId);

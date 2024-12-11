@@ -12,13 +12,13 @@ html body{
 .my-container {
     display: flex;
     width: 100%;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
     flex-direction: column;
     gap: 20px;
     align-items: center;
     justify-content: center;
     background-color: transparent !important;
+    box-sizing: border-box;
 }
 
 .profile-info{

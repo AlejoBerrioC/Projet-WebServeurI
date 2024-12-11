@@ -2,10 +2,16 @@
 
 require_once __DIR__ . '/../Models/Entities/User.php';
 require_once __DIR__ . '/../Models/DAOs/UserDAO.php';
+require_once __DIR__ . '/../Models/Entities/Result.php';
+require_once __DIR__ . '/../Models/DAOs/ResultDAO.php';
+require_once __DIR__ . '/../Models/Entities/Quiz.php';
+require_once __DIR__ . '/../Models/DAOs/QuizDAO.php';
 require_once __DIR__ . '/../../database/Database.php';
 
 $db = (new Database())->connect();
 $userDao = new UserDAO($db);
+$quizDao = new QuizDAO($db);
+$resultDao = new ResultDAO($db);
 $message = '';
 
 session_start();
@@ -25,6 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
+
+$results = $resultDao->getResultsByUserId($userObj->getId());
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,16 +65,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <th>Quiz Name</th>
                         <th>Result</th>
                         <th>Date</th>
-                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Quiz 1</td>
-                        <td>80% (Expert!)</td>
-                        <td>2024-11-24</td>
-                        <td><button type="button">View</button></td>
-                    </tr>
+                    <?php foreach ($results as $result) : ?>
+                        <tr>
+                            <td><?php echo $quizDao->getQuizById($result['quiz_id'])->getTitle(); ?></td>
+                            <td><?php echo $result['score']; ?></td>
+                            <td><?php echo date('Y-m-d', strtotime($result['date'])); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>

@@ -28,7 +28,8 @@ document.getElementById('save-answer-btn').addEventListener('click', function(ev
                 } else {
                     score = response.score;
                     resultat = (score / totalQuestions * 100).toFixed(1);
-                    document.getElementById('quiz-resultat').innerHTML = `<p>You have completed the quiz! Your score is ${score} out of ${totalQuestions} questions ${resultat}%</p>`;
+                    document.getElementById('quiz-resultat').innerHTML = `
+                    <p>You have completed the quiz! Your score is ${score} out of ${totalQuestions} questions ${resultat}%</p>`;
                 }
             } else{
                 alert(response.message);
@@ -98,7 +99,8 @@ function updateQuestion(question) {
                     } else {
                         score = response.score;
                         resultat = (score / totalQuestions * 100).toFixed(1);
-                        document.getElementById('quiz-resultat').innerHTML = `<p>You have completed the quiz! Your score is ${score} out of ${totalQuestions} questions ${resultat}%</p>`;
+                        document.getElementById('quiz-resultat').innerHTML = `
+                        <p>You have completed the quiz! Your score is ${score} out of ${totalQuestions} questions ${resultat}%</p>`;
                     }
                 } else{
                     alert(response.message);

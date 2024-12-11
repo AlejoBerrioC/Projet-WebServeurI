@@ -70,8 +70,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete-quiz-id'])) {
                             <td><?php echo $quizObj->getDescription(); ?></td>
                             <td><?php echo date('Y-m-d', strtotime($quizObj->getDateCreation())); ?></td>
                             <td>
-                                <button type="submit" id="edit-quiz" onclick="creationQuiz()">Edit</button>
-                                &nbsp;
                                 <button type="button" id="delete-quiz" class="btn btn-primary" 
                                 data-toggle="modal" data-target="#delete-quiz-modal"
                                 data-quiz-id="<?php echo $quiz['id']; ?>">Delete</button>

@@ -12,6 +12,7 @@ $db = (new Database())->connect();
 $quizDao = new QuizDAO($db);
 $questionDao = new QuestionDAO($db);
 $answerDao = new AnswerDAO($db);
+$user_id = $_SESSION['user_id'];
 if(isset($_SESSION['quiz_id'])) {
     $quiz_id = $_SESSION['quiz_id'];
 } else {
@@ -19,28 +20,9 @@ if(isset($_SESSION['quiz_id'])) {
 }
 
 $questions = $questionDao->getQuestionsByQuizId($quiz_id);
+$totalQuestions = count($questions);
+$goodAnswers = 0;
 
-//Change the question to the next one
-// if(!isset($_SESSION['current_question_index'])) {
-//     $_SESSION['current_question_index'] = 0;
-//     echo 'current_question_index set to 0';
-// }
-
-// if(!empty($questions)) {
-//     $currentQuestionIndex = $_SESSION['current_question_index'];
-
-//     if($currentQuestionIndex < count($questions)) {
-//         $currentQuestion = $questions[$currentQuestionIndex];
-//         $answers = $answerDao->getAnswersByQuestionId($currentQuestion['id']);
-//     }
-// }
-
-// if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save_answer'])) {
-//     echo "antes " . $_SESSION['current_question_index'];
-//     $_SESSION['current_question_index']++;
-//     echo "despues " . $_SESSION['current_question_index'];
-//     header("Location: " . $_SERVER['PHP_SELF']);
-// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,9 +34,12 @@ $questions = $questionDao->getQuestionsByQuizId($quiz_id);
     <title>Quiz Page</title>
 </head>
 <body>
-    <div class="my-container">
+    <div class="my-container" id="quiz-container">
         <div class="table-title">
             <h1><?php echo $quizDao->getQuizNameById($quiz_id); ?></h1>
+            <div id="quiz-resultat">
+                <h3>Number of questions: <?php echo $totalQuestions; ?></h3>
+            </div>
         </div>
         <?php if(!empty($questions)) : ?>
             <?php 
@@ -90,6 +75,6 @@ $questions = $questionDao->getQuestionsByQuizId($quiz_id);
             </div>
         <?php endif; ?>
     </div>
-    <script src="../../public/js/jsQuizPage(Ajax).js"></script>
+    <script src="../../public/js/jsQuizPage.js"></script>
 </body>
 </html>

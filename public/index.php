@@ -3,11 +3,13 @@ require_once __DIR__ . '/../app/Controllers/Auth.php';
 require_once __DIR__ . '/../app/Controllers/PageController.php';
 require_once __DIR__ . '/../app/Models/Entities/User.php';
 require_once __DIR__ . '/../app/Models/DAOs/UserDAO.php';
+require_once __DIR__ . '/../app/Models/DAOs/SessionDAO.php';
 require_once __DIR__ . '/../database/Database.php';
 
 
 $db = (new Database())->connect();
 $userDao = new UserDAO($db);
+$sessionDao = new SessionDAO($db);
 
 session_start();
 
@@ -23,9 +25,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     
         if($user && password_verify($password, $user->getPassword())) {
-            Auth::login($user, $_POST['remember']);
+            $sessionToken = Auth::generateToken();
+            $expirationDate = new DateTime();
+            $expirationDate->modify('30 minutes');
+            $expiration = $expirationDate->format('Y-m-d H:i:s');
+            $sessionDao->addSession($user->getId(), $sessionToken, $expiration);
+                       
             $_SESSION['user_id'] = $user->getId();
             $role = $user->getRole();
+            Auth::login($user, $_POST['remember']);
             PageController::dashboard($role);
         } else{
             $error = "Invalid username or password";

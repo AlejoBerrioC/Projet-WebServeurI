@@ -18,7 +18,9 @@ class Auth{
     }
 
     public static function generateToken(){
-        return bin2hex(random_bytes(32));
+        $token = bin2hex(random_bytes(32));
+        return $token;
+        
     }
 
     public static function logout(){

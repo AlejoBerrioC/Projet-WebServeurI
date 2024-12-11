@@ -63,6 +63,18 @@ class AnswerDAO{
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function authGoodAnswer($answer_id) {
+        $query = "SELECT * FROM " . $this->table . " WHERE id = :answer_id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':answer_id', $answer_id);
+        $stmt->execute();
+        $answer = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($answer['is_correct'] == 1) {
+            return true;
+        }
+        return false;
+    }
 }
 
 ?>

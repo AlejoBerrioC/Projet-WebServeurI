@@ -1,9 +1,12 @@
+let score = 0;
+
 document.getElementById('save-answer-btn').addEventListener('click', function(event) {
     event.preventDefault();
     const currentQuestionId = this.getAttribute('data-current-question-id');
     const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+    const totalQuestions = document.getElementById('total-questions').getAttribute('data-total-questions');
+    var resultat = 0;
     
-
     
     if(!selectedAnswer) {
         alert('Please select an answer!');
@@ -19,16 +22,21 @@ document.getElementById('save-answer-btn').addEventListener('click', function(ev
             const response = JSON.parse(xhr.responseText);
             if(response.status === 'success') {
                 if(response.nextQuestion){
+                    score = response.score;
+                    console.log(response.score);
                     updateQuestion(response.nextQuestion);
                 } else {
-                    document.getElementById('quiz-resultat').innerHTML = `<p>You have completed the quiz!</p>`;
+                    score = response.score;
+                    resultat = score / totalQuestions * 100;
+                    document.getElementById('quiz-resultat').innerHTML = `<p>You have completed the quiz! Your score is ${score} out of ${totalQuestions} questions ${resultat}%</p>`;
                 }
             } else{
                 alert(response.message);
             }
         }
     };
-    xhr.send(`currentQuestionId=${currentQuestionId}&answerId=${selectedAnswer.value}`);
+    console.log(`currentQuestionId=${currentQuestionId}&answerId=${selectedAnswer.value}&score=${score}`);
+    xhr.send(`currentQuestionId=${currentQuestionId}&answerId=${selectedAnswer.value}&score=${score}`);
 
 });
 
@@ -68,8 +76,9 @@ function updateQuestion(question) {
         event.preventDefault();
         const currentQuestionId = this.getAttribute('data-current-question-id');
         const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+        const totalQuestions = document.getElementById('total-questions').getAttribute('data-total-questions');
+        var resultat = 0;
         
-    
         
         if(!selectedAnswer) {
             alert('Please select an answer!');
@@ -85,16 +94,21 @@ function updateQuestion(question) {
                 const response = JSON.parse(xhr.responseText);
                 if(response.status === 'success') {
                     if(response.nextQuestion){
+                        score = response.score;
+                        console.log(response.score);
                         updateQuestion(response.nextQuestion);
                     } else {
-                        document.getElementById('quiz-resultat').innerHTML = `<p>You have completed the quiz!</p>`;
+                        score = response.score;
+                        resultat = (score / totalQuestions * 100).toFixed(1);
+                        document.getElementById('quiz-resultat').innerHTML = `<p>You have completed the quiz! Your score is ${score} out of ${totalQuestions} questions ${resultat}%</p>`;
                     }
                 } else{
                     alert(response.message);
                 }
             }
         };
-        xhr.send(`currentQuestionId=${currentQuestionId}&answerId=${selectedAnswer.value}`);
+        console.log(`currentQuestionId=${currentQuestionId}&answerId=${selectedAnswer.value}&score=${score}`);
+        xhr.send(`currentQuestionId=${currentQuestionId}&answerId=${selectedAnswer.value}&score=${score}`);
     
     });
 }

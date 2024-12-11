@@ -5,6 +5,8 @@ require_once __DIR__ . '/../Models/Entities/Question.php';
 require_once __DIR__ . '/../Models/DAOs/QuestionDAO.php';
 require_once __DIR__ . '/../Models/Entities/Answer.php';
 require_once __DIR__ . '/../Models/DAOs/AnswerDAO.php';
+require_once __DIR__ . '/../Models/Entities/Result.php';
+require_once __DIR__ . '/../Models/DAOs/ResultDAO.php';
 require_once __DIR__ . '/../../database/Database.php';
 session_start();
 // Get the quiz ID from the session
@@ -21,8 +23,6 @@ if(isset($_SESSION['quiz_id'])) {
 
 $questions = $questionDao->getQuestionsByQuizId($quiz_id);
 $totalQuestions = count($questions);
-$goodAnswers = 0;
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +38,7 @@ $goodAnswers = 0;
         <div class="table-title">
             <h1><?php echo $quizDao->getQuizNameById($quiz_id); ?></h1>
             <div id="quiz-resultat">
-                <h3>Number of questions: <?php echo $totalQuestions; ?></h3>
+            <h3 id="total-questions" data-total-questions="<?php echo $totalQuestions; ?>">Number of questions: <?php echo $totalQuestions; ?></h3>
             </div>
         </div>
         <?php if(!empty($questions)) : ?>

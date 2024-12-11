@@ -6,12 +6,10 @@ class Result {
     public $score;
     public $date;
 
-    public function __construct($id, $quiz_id, $user_id, $score, $date) {
-        $this->id = $id;
+    public function __construct($quiz_id, $user_id, $score) {
         $this->quiz_id = $quiz_id;
         $this->user_id = $user_id;
         $this->score = $score;
-        $this->date = $date;
     }
 
     public function getId() {
